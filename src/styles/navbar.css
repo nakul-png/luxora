@@ -27,3 +27,26 @@
     color:white;
     text-decoration:none;
 }
+@media (max-width: 768px){
+
+  .navbar{
+    padding:20px;
+    flex-direction:column;
+    gap:15px;
+  }
+
+  .logo{
+    font-size:28px;
+  }
+
+  .nav-links{
+    gap:18px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .nav-links a{
+    font-size:15px;
+  }
+
+}

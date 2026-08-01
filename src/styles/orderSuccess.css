@@ -1,0 +1,66 @@
+.success-page{
+    min-height:100vh;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:120px 20px;
+}
+
+.success-card{
+    width:600px;
+    background:#111;
+    border:1px solid #222;
+    border-radius:20px;
+    text-align:center;
+    padding:50px;
+    color:white;
+}
+
+.success-icon{
+    width:120px;
+    height:120px;
+    margin:auto;
+    background:#d4af37;
+    color:black;
+    font-size:60px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+}
+
+.success-card h1{
+    margin:30px 0 15px;
+    font-size:40px;
+}
+
+.success-card p{
+    color:#ccc;
+    margin-bottom:15px;
+    font-size:18px;
+}
+
+.success-card h3{
+    color:#d4af37;
+    margin-bottom:20px;
+}
+
+.continue-btn{
+    margin-top:30px;
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:12px;
+    background:#d4af37;
+    color:black;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.continue-btn:hover{
+    transform:scale(1.02);
+}

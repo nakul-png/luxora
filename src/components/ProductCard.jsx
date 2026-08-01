@@ -1,8 +1,7 @@
 "use client";
-
+import { useCart } from "../context/CartContext";
 import Link from "next/link";
 import Image from "next/image";
-import { useCart } from "../context/CartContext";
 
 export default function ProductCard({
   id,
@@ -10,6 +9,7 @@ export default function ProductCard({
   name,
   price,
 }) {
+
   const { addToCart } = useCart();
 
   return (
@@ -37,20 +37,19 @@ export default function ProductCard({
       </p>
 
       <button
-        type="button"
-        className="buy-btn"
-        onClick={() => {
-          console.log("Button Clicked");
-          addToCart({
-            id,
-            image,
-            name,
-            price,
-          });
-        }}
-      >
-        Add to Cart
-      </button>
+  className="buy-btn"
+  onClick={() =>
+    addToCart({
+      id,
+      image,
+      name,
+      price,
+      quantity: 1,
+    })
+  }
+>
+  Add to Cart
+</button>
     </div>
   );
 }

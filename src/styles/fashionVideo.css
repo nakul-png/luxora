@@ -1,0 +1,52 @@
+.fashion-video{
+    position:relative;
+    height:90vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.fashion-bg{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.fashion-overlay{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    color:white;
+    background:rgba(0,0,0,0.45);
+    padding:40px;
+    border-radius:20px;
+}
+
+.fashion-overlay h2{
+    font-size:52px;
+    margin-bottom:20px;
+}
+
+.fashion-overlay p{
+    font-size:20px;
+    margin-bottom:30px;
+}
+
+.fashion-overlay button{
+    background:#d4af37;
+    color:black;
+    border:none;
+    padding:16px 35px;
+    font-size:18px;
+    border-radius:40px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.fashion-overlay button:hover{
+    transform:scale(1.05);
+}

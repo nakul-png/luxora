@@ -1,0 +1,74 @@
+.collections-page{
+    background:#000;
+    color:white;
+    min-height:100vh;
+    padding-bottom:80px;
+}
+
+.collections-hero{
+    text-align:center;
+    padding:140px 20px 80px;
+}
+
+.collections-hero h1{
+    font-size:64px;
+    letter-spacing:4px;
+}
+
+.collections-hero p{
+    color:#bbb;
+    margin-top:20px;
+    font-size:20px;
+}
+
+.collection-card{
+    display:block;
+    width:90%;
+    max-width:1400px;
+    margin:40px auto;
+    position:relative;
+    overflow:hidden;
+    border-radius:20px;
+    text-decoration:none;
+}
+
+.collection-card img{
+    width:100%;
+    height:550px;
+    object-fit:cover;
+    transition:.6s;
+}
+
+.collection-card:hover img{
+    transform:scale(1.08);
+}
+
+.collection-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.collection-overlay h2{
+    font-size:48px;
+    margin-bottom:30px;
+}
+
+.collection-overlay button{
+    background:#d4af37;
+    color:black;
+    padding:16px 36px;
+    border:none;
+    border-radius:40px;
+    font-size:18px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.collection-overlay button:hover{
+    transform:scale(1.08);
+}

@@ -2,9 +2,15 @@ export default function Hero() {
   return (
     <section className="hero">
 
-      <video autoPlay muted loop playsInline className="bg-video">
-        <source src="/videos/fashion.mp4" type="video/mp4" />
-      </video>
+      <video
+        autoPlay
+        loop
+        muted
+       playsInline
+       className="hero-video"
+     >
+       <source src="/videos/hero.mp4" type="video/mp4" />
+    </video>
 
       <div className="overlay"></div>
 

@@ -10,6 +10,12 @@ import "../styles/testimonials.css";
 import "../styles/newsletter.css";
 import "../styles/product.css";
 import { CartProvider } from "../context/CartContext";
+import "../styles/collections.css";
+import "../styles/fashionVideo.css";
+import "../styles/lookbook.css";
+import "../styles/stats.css";
+import "../styles/checkout.css";
+import "../styles/orderSuccess.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
