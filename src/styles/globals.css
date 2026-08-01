@@ -1,0 +1,44 @@
+html{
+    scroll-behavior: smooth;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#000;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+h1{
+    font-size:90px;
+}
+
+p{
+    margin:20px 0;
+    font-size:24px;
+}
+
+button{
+    padding:15px 40px;
+    font-size:18px;
+    border:none;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#333;
+    color:white;
+}

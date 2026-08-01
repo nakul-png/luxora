@@ -1,0 +1,9 @@
+.announcement-bar{
+    background:#111;
+    color:#fff;
+    text-align:center;
+    padding:10px;
+    font-size:14px;
+    letter-spacing:1px;
+    border-bottom:1px solid #333;
+}
