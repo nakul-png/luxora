@@ -1,6 +1,6 @@
 .footer{
     background:#111;
-    padding:80px 60px 30px;
+    padding:80px 40px 30px;
 }
 
 .footer-logo{
@@ -10,39 +10,140 @@
 
 .footer-logo h2{
     font-size:42px;
+    color:#fff;
+    letter-spacing:3px;
 }
 
 .footer-logo p{
     color:#aaa;
+    margin-top:10px;
 }
 
 .footer-links{
-    display:flex;
-    justify-content:space-around;
-    flex-wrap:wrap;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
     gap:40px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.footer-links div{
+    text-align:center;
 }
 
 .footer-links h3{
+    color:#fff;
     margin-bottom:20px;
+    font-size:22px;
 }
 
-.footer-links p{
+.footer-links a{
+    display:block;
     color:#bbb;
-    margin:10px 0;
-    cursor:pointer;
+    text-decoration:none;
+    margin:12px 0;
+    transition:.3s;
 }
 
-.footer-links p:hover{
+.footer-links a:hover{
     color:#d4af37;
+    transform:translateX(5px);
 }
 
 .footer hr{
     margin:50px 0 25px;
-    border:1px solid #333;
+    border:none;
+    border-top:1px solid #333;
 }
 
 .copyright{
     text-align:center;
     color:#777;
+    font-size:15px;
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width:1024px){
+
+.footer{
+    padding:70px 25px 25px;
+}
+
+.footer-links{
+    gap:25px;
+}
+
+.footer-logo h2{
+    font-size:36px;
+}
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width:768px){
+
+.footer{
+    padding:60px 15px 20px;
+}
+
+.footer-logo{
+    margin-bottom:40px;
+}
+
+.footer-logo h2{
+    font-size:30px;
+}
+
+.footer-logo p{
+    font-size:14px;
+}
+
+.footer-links{
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.footer-links h3{
+    font-size:15px;
+    margin-bottom:10px;
+}
+
+.footer-links a{
+    font-size:12px;
+    margin:8px 0;
+}
+
+.copyright{
+    font-size:12px;
+}
+
+}
+
+/* ---------- Small Phones ---------- */
+
+@media (max-width:480px){
+
+.footer-links{
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+}
+
+.footer-links h3{
+    font-size:14px;
+}
+
+.footer-links a{
+    font-size:11px;
+}
+
+.footer-logo h2{
+    font-size:26px;
+}
+
+.footer-logo p{
+    font-size:13px;
+}
+
 }

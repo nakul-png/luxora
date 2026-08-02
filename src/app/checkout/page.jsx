@@ -10,16 +10,16 @@ export default function CheckoutPage() {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-      if (cartItems.length === 0) {
-  return (
-    <>
-      <Navbar />
-      <main className="checkout-page">
-        <h1>Your cart is empty.</h1>
-      </main>
-    </>
-  );
-}
+  if (cartItems.length === 0) {
+    return (
+      <>
+        <Navbar />
+        <main className="checkout-page">
+          <h1>Your cart is empty.</h1>
+        </main>
+      </>
+    );
+  }
   return (
     <>
       <Navbar />
@@ -32,42 +32,42 @@ export default function CheckoutPage() {
 
             <input type="text" placeholder="👤 Full Name" />
 
-<input type="email" placeholder="📧 Email Address" />
+            <input type="email" placeholder="📧 Email Address" />
 
-<input type="tel" placeholder="📱 Phone Number" />
+            <input type="tel" placeholder="📱 Phone Number" />
 
-<textarea placeholder="🏠 House No., Building, Street, Area"></textarea>
+            <textarea placeholder="🏠 House No., Building, Street, Area"></textarea>
 
-<input type="text" placeholder="🏙 City" />
+            <input type="text" placeholder="🏙 City" />
 
-<input type="text" placeholder="🌍 State" />
+            <input type="text" placeholder="🌍 State" />
 
-<input type="text" placeholder="📮 PIN Code" />
+            <input type="text" placeholder="📮 PIN Code" />
             <h2 className="payment-title">Payment Method</h2>
 
-<div className="payment-methods">
+            <div className="payment-methods">
 
-  <label className="payment-option">
-    <input type="radio" name="payment" defaultChecked />
-    <span>💳 Credit / Debit Card</span>
-  </label>
+              <label className="payment-option">
+                <input type="radio" name="payment" defaultChecked />
+                <span>💳 Credit / Debit Card</span>
+              </label>
 
-  <label className="payment-option">
-    <input type="radio" name="payment" />
-    <span>📱 UPI</span>
-  </label>
+              <label className="payment-option">
+                <input type="radio" name="payment" />
+                <span>📱 UPI</span>
+              </label>
 
-  <label className="payment-option">
-    <input type="radio" name="payment" />
-    <span>🏦 Net Banking</span>
-  </label>
+              <label className="payment-option">
+                <input type="radio" name="payment" />
+                <span>🏦 Net Banking</span>
+              </label>
 
-  <label className="payment-option">
-    <input type="radio" name="payment" />
-    <span>💵 Cash on Delivery</span>
-  </label>
+              <label className="payment-option">
+                <input type="radio" name="payment" />
+                <span>💵 Cash on Delivery</span>
+              </label>
 
-</div>
+            </div>
 
             <Link href="/order-success">
               <button className="checkout-btn">
@@ -81,15 +81,26 @@ export default function CheckoutPage() {
 
             {cartItems.map((item) => (
               <div key={item.id} className="summary-item">
-                <span>
-                  {item.name} × {item.quantity}
-                </span>
+
+                <div>
+                  <strong>{item.name}</strong>
+                  <p>Size: {item.size}</p>
+                  <p>Qty: {item.quantity}</p>
+                </div>
 
                 <span>
                   ₹{item.price * item.quantity}
                 </span>
+
               </div>
             ))}
+
+            <hr />
+
+            <div className="summary-item">
+              <span>Shipping</span>
+              <span>FREE</span>
+            </div>
 
             <hr />
 

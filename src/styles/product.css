@@ -320,3 +320,164 @@
 .remove-btn:hover{
     background:#e53935;
 }
+/* ========================= */
+/* Tablet */
+/* ========================= */
+
+@media (max-width:1024px){
+
+.product-page{
+    padding:120px 30px 60px;
+}
+
+.product-container{
+    gap:40px;
+}
+
+.product-details h1{
+    font-size:38px;
+}
+
+.main-image{
+    width:100%;
+    height:auto;
+}
+
+}
+
+/* ========================= */
+/* Mobile */
+/* ========================= */
+
+@media (max-width:768px){
+
+.product-page{
+    padding:110px 20px 50px;
+}
+
+.product-container{
+    flex-direction:column;
+    gap:30px;
+}
+
+.product-image,
+.product-details{
+    width:100%;
+}
+
+.product-details h1{
+    font-size:30px;
+}
+
+.product-price{
+    font-size:28px;
+}
+
+.product-rating{
+    font-size:16px;
+}
+
+.product-description{
+    font-size:15px;
+}
+
+.thumbnail-gallery{
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.thumbnail{
+    width:70px;
+    height:90px;
+}
+
+.product-buttons{
+    flex-direction:column;
+}
+
+.buy-btn,
+.checkout-btn{
+    width:100%;
+}
+
+.sizes{
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.quantity-box{
+    justify-content:center;
+}
+
+.related-products{
+    margin-top:70px;
+}
+
+.related-products h2{
+    font-size:28px;
+}
+
+.reviews-section{
+    margin-top:70px;
+}
+
+.reviews-section h2{
+    font-size:28px;
+}
+
+.review-card{
+    padding:18px;
+}
+
+.cart-page{
+    padding:110px 20px 50px;
+}
+
+.cart-item{
+    flex-direction:column;
+    text-align:center;
+}
+
+.cart-item img{
+    width:180px;
+    height:auto;
+}
+
+.cart-details h3{
+    font-size:22px;
+}
+
+.quantity-controls{
+    justify-content:center;
+}
+
+}
+
+/* ========================= */
+/* Small Phones */
+/* ========================= */
+
+@media (max-width:480px){
+
+.product-details h1{
+    font-size:24px;
+}
+
+.product-price{
+    font-size:24px;
+}
+
+.main-image{
+    width:100%;
+}
+
+.thumbnail{
+    width:60px;
+    height:80px;
+}
+
+.review-card{
+    padding:15px;
+}
+
+}

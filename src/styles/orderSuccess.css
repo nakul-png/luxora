@@ -8,13 +8,20 @@
 }
 
 .success-card{
-    width:600px;
+    width:100%;
+    max-width:650px;
     background:#111;
     border:1px solid #222;
     border-radius:20px;
     text-align:center;
     padding:50px;
     color:white;
+    transition:.3s;
+}
+
+.success-card:hover{
+    transform:translateY(-5px);
+    border-color:#d4af37;
 }
 
 .success-icon{
@@ -29,6 +36,18 @@
     justify-content:center;
     align-items:center;
     font-weight:bold;
+    animation:pop .6s ease;
+}
+
+@keyframes pop{
+    0%{
+        transform:scale(.5);
+        opacity:0;
+    }
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
 }
 
 .success-card h1{
@@ -40,27 +59,115 @@
     color:#ccc;
     margin-bottom:15px;
     font-size:18px;
+    line-height:1.7;
 }
 
-.success-card h3{
-    color:#d4af37;
-    margin-bottom:20px;
+.order-info{
+    background:#1b1b1b;
+    border:1px solid #333;
+    border-radius:12px;
+    padding:20px;
+    margin:30px 0;
 }
 
-.continue-btn{
+.order-info p{
+    margin:10px 0;
+}
+
+.success-buttons{
+    display:flex;
+    gap:15px;
     margin-top:30px;
-    width:100%;
+}
+
+.continue-btn,
+.home-btn{
+    flex:1;
     padding:18px;
     border:none;
     border-radius:12px;
-    background:#d4af37;
-    color:black;
-    font-size:18px;
+    font-size:17px;
     font-weight:bold;
     cursor:pointer;
     transition:.3s;
 }
 
-.continue-btn:hover{
-    transform:scale(1.02);
+.continue-btn{
+    background:#d4af37;
+    color:black;
+}
+
+.home-btn{
+    background:#222;
+    color:white;
+}
+
+.continue-btn:hover,
+.home-btn:hover{
+    transform:translateY(-3px);
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width:1024px){
+
+.success-card{
+    padding:40px;
+}
+
+.success-card h1{
+    font-size:34px;
+}
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width:768px){
+
+.success-page{
+    padding:100px 20px;
+}
+
+.success-card{
+    padding:30px 20px;
+}
+
+.success-icon{
+    width:90px;
+    height:90px;
+    font-size:42px;
+}
+
+.success-card h1{
+    font-size:28px;
+}
+
+.success-card p{
+    font-size:16px;
+}
+
+.success-buttons{
+    flex-direction:column;
+}
+
+.continue-btn,
+.home-btn{
+    width:100%;
+}
+
+}
+
+/* ---------- Small Phones ---------- */
+
+@media (max-width:480px){
+
+.success-card h1{
+    font-size:24px;
+}
+
+.success-card p{
+    font-size:15px;
+}
+
 }

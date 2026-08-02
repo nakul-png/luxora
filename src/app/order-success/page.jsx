@@ -18,21 +18,31 @@ export default function OrderSuccess() {
           <h1>Order Placed Successfully!</h1>
 
           <p>
-            Thank you for shopping with LUXORA.
+            Thank you for shopping with <strong>LUXORA</strong>.
+            Your order has been confirmed and is being prepared.
           </p>
 
-          <h3>Order ID: LX10256</h3>
+          <div className="order-info">
+            <p><strong>Order ID:</strong> #LX10256</p>
+            <p><strong>Estimated Delivery:</strong> 3–5 Business Days</p>
+            <p><strong>Payment Status:</strong> Confirmed ✅</p>
+          </div>
 
-          <p>
-            Estimated Delivery:
-            <strong> 3–5 Business Days</strong>
-          </p>
+          <div className="success-buttons">
 
-          <Link href="/shop">
-            <button className="continue-btn">
-              Continue Shopping
-            </button>
-          </Link>
+            <Link href="/shop">
+              <button className="continue-btn">
+                Continue Shopping
+              </button>
+            </Link>
+
+            <Link href="/">
+              <button className="home-btn">
+                Back to Home
+              </button>
+            </Link>
+
+          </div>
 
         </div>
       </main>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Categories() {
   return (
@@ -7,7 +8,7 @@ export default function Categories() {
 
       <div className="category-grid">
 
-        <div className="category-card">
+        <Link href="/shop" className="category-card">
           <Image
             src="/images/oversized.jpg"
             alt="Oversized T-Shirts"
@@ -15,9 +16,9 @@ export default function Categories() {
             height={500}
           />
           <h3>Oversized T-Shirts</h3>
-        </div>
+        </Link>
 
-        <div className="category-card">
+        <Link href="/shop" className="category-card">
           <Image
             src="/images/hoodies.jpg"
             alt="Hoodies"
@@ -25,9 +26,9 @@ export default function Categories() {
             height={500}
           />
           <h3>Hoodies</h3>
-        </div>
+        </Link>
 
-        <div className="category-card">
+        <Link href="/shop" className="category-card">
           <Image
             src="/images/tanktops.jpg"
             alt="Tank Tops"
@@ -35,9 +36,9 @@ export default function Categories() {
             height={500}
           />
           <h3>Tank Tops</h3>
-        </div>
+        </Link>
 
-        <div className="category-card">
+        <Link href="/shop" className="category-card">
           <Image
             src="/images/bottoms.jpg"
             alt="Bottoms"
@@ -45,9 +46,9 @@ export default function Categories() {
             height={500}
           />
           <h3>Bottoms</h3>
-        </div>
+        </Link>
 
-        <div className="category-card">
+        <Link href="/shop" className="category-card">
           <Image
             src="/images/accessories.jpg"
             alt="Accessories"
@@ -55,7 +56,7 @@ export default function Categories() {
             height={500}
           />
           <h3>Accessories</h3>
-        </div>
+        </Link>
 
       </div>
     </section>

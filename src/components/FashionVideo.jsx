@@ -20,8 +20,8 @@ export default function FashionVideo() {
           Crafted for the Bold. Designed for the Fearless.
         </p>
 
-        <Link href="/collections">
-          <button>Explore Collection</button>
+        <Link href="/collections" className="fashion-btn">
+          Explore Collection
         </Link>
       </div>
     </section>

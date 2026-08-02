@@ -13,7 +13,9 @@ export default function Newsletter() {
           placeholder="Enter your email"
         />
 
-        <button>Subscribe</button>
+        <button className="newsletter-btn">
+         Subscribe
+        </button>
       </div>
     </section>
   );

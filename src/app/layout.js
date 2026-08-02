@@ -16,6 +16,7 @@ import "../styles/lookbook.css";
 import "../styles/stats.css";
 import "../styles/checkout.css";
 import "../styles/orderSuccess.css";
+import "../styles/brandStory.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

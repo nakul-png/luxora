@@ -1,42 +1,78 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "../context/CartContext";
 
 export default function Navbar() {
   const { cartItems } = useCart();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <nav className="navbar">
-      <div className="logo">LUXORA</div>
 
-      <ul className="nav-links">
-        <li>
-          <Link href="/">Home</Link>
-        </li>
+      <Link href="/" className="logo">
+        LUXORA
+      </Link>
 
-        <li>
-          <Link href="/shop">Shop</Link>
-        </li>
+      <div className="mobile-icons">
 
-        <li>
-          <Link href="/collections">Collections</Link>
-        </li>
+  <Link href="/cart" className="mobile-cart">
+    🛒
+    <span>{cartItems.length}</span>
+  </Link>
 
-        <li>
-          <Link href="/about">About</Link>
-        </li>
+  <div
+    className="menu-btn"
+    onClick={() => setMenuOpen(true)}
+  >
+    ☰
+  </div>
 
-        <li>
-          <Link href="/contact">Contact</Link>
-        </li>
+</div>
 
-        <li>
-          <Link href="/cart">
-            🛒 Cart ({cartItems.length})
-          </Link>
-        </li>
+      <ul className="nav-links desktop-menu">
+        <li><Link href="/">Home</Link></li>
+        <li><Link href="/shop">Shop</Link></li>
+        <li><Link href="/collections">Collections</Link></li>
+        <li><Link href="/about">About</Link></li>
+        <li><Link href="/contact">Contact</Link></li>
+        <li><Link href="/cart">🛒 Cart ({cartItems.length})</Link></li>
       </ul>
+
+      <div className={`mobile-menu ${menuOpen ? "active" : ""}`}>
+
+        <div
+          className="close-btn"
+          onClick={() => setMenuOpen(false)}
+        >
+          ✕
+        </div>
+
+        <Link href="/" onClick={() => setMenuOpen(false)}>
+          Home
+        </Link>
+
+        <Link href="/shop" onClick={() => setMenuOpen(false)}>
+          Shop
+        </Link>
+
+        <Link href="/collections" onClick={() => setMenuOpen(false)}>
+          Collections
+        </Link>
+
+        <Link href="/about" onClick={() => setMenuOpen(false)}>
+          About
+        </Link>
+
+        <Link href="/contact" onClick={() => setMenuOpen(false)}>
+          Contact
+        </Link>
+
+        
+
+      </div>
+
     </nav>
   );
 }

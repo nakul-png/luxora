@@ -7,41 +7,112 @@
 .newsletter h2{
     font-size:50px;
     margin-bottom:20px;
+    color:#fff;
 }
 
 .newsletter p{
     color:#bbb;
     max-width:700px;
     margin:0 auto 40px;
+    line-height:1.7;
+    font-size:18px;
 }
 
 .newsletter-form{
     display:flex;
     justify-content:center;
+    align-items:center;
     gap:15px;
     flex-wrap:wrap;
+    max-width:700px;
+    margin:auto;
 }
 
 .newsletter-form input{
-    width:380px;
+    flex:1;
+    min-width:280px;
     padding:18px;
     border:none;
     border-radius:10px;
     outline:none;
     font-size:16px;
+    background:#1b1b1b;
+    color:#fff;
 }
 
-.newsletter-form button{
+.newsletter-form input::placeholder{
+    color:#888;
+}
+
+.newsletter-btn{
     padding:18px 40px;
-    background:white;
-    color:black;
+    background:#d4af37;
+    color:#000;
     border:none;
     border-radius:10px;
     cursor:pointer;
+    font-size:16px;
+    font-weight:600;
     transition:.3s;
 }
 
-.newsletter-form button:hover{
-    background:#d4af37;
-    color:white;
+.newsletter-btn:hover{
+    background:#fff;
+    transform:translateY(-3px);
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width:1024px){
+
+.newsletter h2{
+    font-size:42px;
+}
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width:768px){
+
+.newsletter{
+    padding:70px 20px;
+}
+
+.newsletter h2{
+    font-size:32px;
+}
+
+.newsletter p{
+    font-size:16px;
+}
+
+.newsletter-form{
+    flex-direction:column;
+}
+
+.newsletter-form input{
+    width:100%;
+    min-width:100%;
+}
+
+.newsletter-btn{
+    width:100%;
+    padding:16px;
+}
+
+}
+
+/* ---------- Small Phones ---------- */
+
+@media (max-width:480px){
+
+.newsletter h2{
+    font-size:28px;
+}
+
+.newsletter p{
+    font-size:15px;
+}
+
 }

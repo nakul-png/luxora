@@ -1,17 +1,28 @@
 .stats{
     display:flex;
-    justify-content:space-evenly;
+    justify-content:center;
     align-items:center;
     flex-wrap:wrap;
-    gap:40px;
+    gap:25px;
     padding:100px 50px;
     background:#111;
     color:white;
 }
 
 .stat-box{
-    text-align:center;
+    flex:1;
     min-width:220px;
+    max-width:260px;
+    text-align:center;
+    background:#1b1b1b;
+    padding:30px 20px;
+    border-radius:18px;
+    transition:.3s;
+}
+
+.stat-box:hover{
+    transform:translateY(-8px);
+    background:#222;
 }
 
 .stat-box h2{
@@ -23,4 +34,73 @@
 .stat-box p{
     font-size:20px;
     color:#ccc;
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width:1024px){
+
+.stats{
+    gap:20px;
+    padding:80px 25px;
+}
+
+.stat-box{
+    min-width:180px;
+}
+
+.stat-box h2{
+    font-size:48px;
+}
+
+.stat-box p{
+    font-size:18px;
+}
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width:768px){
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    padding:60px 15px;
+}
+
+.stat-box{
+    min-width:unset;
+    max-width:100%;
+    padding:20px 10px;
+}
+
+.stat-box h2{
+    font-size:34px;
+}
+
+.stat-box p{
+    font-size:14px;
+}
+
+}
+
+/* ---------- Small Phones ---------- */
+
+@media (max-width:480px){
+
+.stats{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.stat-box h2{
+    font-size:28px;
+}
+
+.stat-box p{
+    font-size:13px;
+}
+
 }

@@ -34,6 +34,7 @@ export default function CartPage() {
 
                 <div className="cart-details">
                   <h3>{item.name}</h3>
+                  <p>Size: {item.size}</p>
 
                   <p>₹{item.price}</p>
 
@@ -60,20 +61,48 @@ export default function CartPage() {
             ))}
 
             <div className="cart-summary">
-              <h2>
-                Total: ₹
-                {cartItems.reduce(
-                  (total, item) =>
-                    total + item.price * item.quantity,
-                  0
-                )}
-              </h2>
+
+              <h2>Order Summary</h2>
+
+              <div className="summary-row">
+                <span>Subtotal</span>
+                <span>
+                  ₹{cartItems.reduce(
+                    (total, item) => total + item.price * item.quantity,
+                    0
+                  )}
+                </span>
+              </div>
+
+              <div className="summary-row">
+                <span>Shipping</span>
+                <span>FREE</span>
+              </div>
+
+              <hr />
+
+              <div className="summary-row total">
+                <span>Total</span>
+                <span>
+                  ₹{cartItems.reduce(
+                    (total, item) => total + item.price * item.quantity,
+                    0
+                  )}
+                </span>
+              </div>
+
+              <Link href="/shop">
+                <button className="continue-btn">
+                  ← Continue Shopping
+                </button>
+              </Link>
 
               <Link href="/checkout">
                 <button className="checkout-btn">
                   Proceed to Checkout
-               </button>
+                </button>
               </Link>
+
             </div>
           </div>
         )}

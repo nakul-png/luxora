@@ -17,12 +17,21 @@ export default function Hero() {
       <div className="hero-content">
         <h1>LUXORA</h1>
         <p>Crafted for the Bold. Designed for the Fearless.</p>
-        <a href="#featured-products">
-  <div className="hero-buttons">
-  <button className="buy-btn">Shop Now</button>
-  <button className="secondary-btn">Explore Collection</button>
+       <div className="hero-buttons">
+
+    <a href="#featured-products">
+      <button className="buy-btn">
+         Shop Now
+      </button>
+    </a>
+
+  <a href="/collections">
+    <button className="secondary-btn">
+      Explore Collection
+    </button>
+  </a>
+
 </div>
-</a>
       </div>
 
     </section>
