@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Categories() {
   return (
-    <section className="categories">
+    <section id="categories" className="categories">
       <h2>Shop by Category</h2>
 
       <div className="category-grid">

@@ -33,8 +33,6 @@ export default function Navbar() {
 
       <ul className="nav-links desktop-menu">
         <li><Link href="/">Home</Link></li>
-        <li><Link href="/shop">Shop</Link></li>
-        <li><Link href="/collections">Collections</Link></li>
         <li><Link href="/about">About</Link></li>
         <li><Link href="/contact">Contact</Link></li>
         <li><Link href="/cart">🛒 Cart ({cartItems.length})</Link></li>
