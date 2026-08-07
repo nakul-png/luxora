@@ -1,18 +1,61 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import ProductCard from "../../components/ProductCard";
-import products from "../../data/products";
+import { getProducts } from "@/services/productService";
 
 export default function Shop() {
   const router = useRouter();
-
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [category, setCategory] = useState("All");
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("Newest");
+  useEffect(() => {
+  console.log("useEffect started");
 
+  async function loadProducts() {
+    console.log("Calling API...");
+
+    try {
+      const data = await getProducts();
+      console.log("Data received:", data);
+
+      setProducts(data);
+    } catch (error) {
+      console.error(error);
+      setError("Unable to load products.");
+    } finally {
+      console.log("Finished");
+      setLoading(false);
+    }
+  }
+
+  loadProducts();
+}, []);
+  if (error) {
+    return (
+      <>
+        <Navbar />
+        <main className="shop-page">
+          <h2>{error}</h2>
+        </main>
+      </>
+    );
+  }
+  if (loading) {
+    return (
+      <>
+        <Navbar />
+        <main className="shop-page">
+          <h2>Loading products...</h2>
+        </main>
+      </>
+    );
+  }
   let filteredProducts = products.filter((product) => {
 
     const matchesCategory =
