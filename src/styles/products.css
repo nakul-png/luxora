@@ -104,7 +104,7 @@
     font-weight:bold;
 }
 .shop-page{
-    padding:100px 60px 60px;
+    padding:90px 20px 50px;
     background:#000;
     min-height:100vh;
 }
@@ -272,68 +272,85 @@
 
 @media (max-width:768px){
 
-.featured-products{
-    padding:70px 20px;
-}
+    .featured-products{
+        padding:70px 20px;
+    }
 
-.featured-products h2{
-    font-size:36px;
-    margin-bottom:40px;
-}
+    .featured-products h2{
+        font-size:36px;
+        margin-bottom:40px;
+    }
 
-.products{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:15px;
-}
+    .products{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:15px;
+    }
 
-.card{
-    width:calc(50% - 8px);
-    max-width:180px;
-    padding:12px;
-}
+    .card{
+        width:calc(50% - 8px);
+        max-width:180px;
+        padding:12px;
+    }
 
-.card:last-child{
-    margin-left:auto;
-    margin-right:auto;
-}
+    .card:last-child{
+        margin-left:auto;
+        margin-right:auto;
+    }
 
-.card img{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-}
+    .card img{
+        width:100%;
+        height:220px;
+        object-fit:cover;
+    }
 
-.card h3{
-    font-size:16px;
-}
+    .card h3{
+        font-size:16px;
+    }
 
-.price{
-    font-size:15px;
-}
+    .price{
+        font-size:15px;
+    }
 
-.buy-btn{
-    padding:10px;
-    font-size:14px;
-}
+    .buy-btn{
+        padding:10px;
+        font-size:14px;
+    }
 
-.shop-page{
-    padding:120px 20px 50px;
-}
+    /* Shop Page */
+    .shop-page{
+        padding:65px 20px 40px;
+    }
 
-.search-bar input{
-    width:100%;
-}
+    .shop-page h1{
+        font-size:60px;
+        margin-bottom:20px;
+    }
 
-.shop-options{
-    justify-content:center;
-}
+    .back-btn{
+        margin-top:10px;
+        margin-bottom:15px;
+        font-size:18px;
+    }
 
-.category-filter{
-    gap:10px;
-}
+    .search-bar{
+        margin-bottom:20px;
+    }
 
+    .search-bar input{
+        width:100%;
+    }
+
+    .shop-options{
+        justify-content:center;
+        margin-bottom:20px;
+    }
+
+    .category-filter{
+        gap:10px;
+        margin-bottom:30px;
+    }
 
 }
 
@@ -368,4 +385,20 @@
     background:#d4af37;
     color:#000;
     border-color:#d4af37;
+}
+.no-products{
+    width:100%;
+    text-align:center;
+    padding:80px 20px;
+}
+
+.no-products h2{
+    font-size:36px;
+    color:#fff;
+    margin-bottom:15px;
+}
+
+.no-products p{
+    color:#999;
+    font-size:18px;
 }

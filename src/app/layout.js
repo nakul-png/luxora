@@ -17,6 +17,7 @@ import "../styles/stats.css";
 import "../styles/checkout.css";
 import "../styles/orderSuccess.css";
 import "../styles/brandStory.css";
+import { Toaster } from "sonner";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -39,9 +40,21 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-       <CartProvider>
-         {children}
-       </CartProvider>
+
+        <Toaster
+          position="top-center"
+          richColors
+          theme="dark"
+          toastOptions={{
+            style: {
+              zIndex: 999999,
+            },
+          }}
+        />
+        <CartProvider>
+          {children}
+        </CartProvider>
+
       </body>
     </html>
   );

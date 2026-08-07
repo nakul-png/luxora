@@ -42,3 +42,24 @@ button:hover{
     background:#333;
     color:white;
 }
+.back-btn{
+    background:none;
+    border:none;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    transition:.3s;
+
+    display:inline-flex;
+    align-items:center;
+
+    margin:0 0 25px 0;   /* नीचे थोड़ा gap */
+    padding:0;
+    margin-top:15px;
+    margin-left:0px;
+    margin-bottom:20px;
+}
+
+.back-btn:hover{
+    color:#d4af37;
+}

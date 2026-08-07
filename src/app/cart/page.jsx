@@ -1,10 +1,12 @@
 "use client";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import Image from "next/image";
 import { useCart } from "../../context/CartContext";
 
 export default function CartPage() {
+  const router = useRouter();
   const {
     cartItems,
     increaseQuantity,
@@ -17,6 +19,12 @@ export default function CartPage() {
       <Navbar />
 
       <main className="cart-page">
+        <button
+          className="back-btn"
+          onClick={() => router.back()}
+        >
+          ← Back
+        </button>
         <h1>Shopping Cart</h1>
 
         {cartItems.length === 0 ? (

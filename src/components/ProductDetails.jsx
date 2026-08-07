@@ -1,5 +1,5 @@
 "use client";
-
+import { toast } from "sonner";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "../context/CartContext";
@@ -23,7 +23,7 @@ export default function ProductDetails({ product }) {
     }
   };
 
-  const handleAddToCart = () => {
+ const handleAddToCart = () => {
   addToCart({
     id: product.id,
     image: product.image,
@@ -33,7 +33,7 @@ export default function ProductDetails({ product }) {
     size: selectedSize,
   });
 
-  alert("Added to cart successfully!");
+  toast.success("Added to Cart!");
 };
 
   const handleBuyNow = () => {
@@ -45,15 +45,25 @@ export default function ProductDetails({ product }) {
     quantity,
     size: selectedSize,
   });
+  toast.success("Proceeding to Checkout...");
 
   router.push("/checkout");
 };
 
   return (
     <>
-      <div className="product-container">
+  <div className="product-page">
 
-        <div className="product-image">
+    <button
+      className="back-btn"
+      onClick={() => router.back()}
+    >
+      ← Back
+    </button>
+
+    <div className="product-container">
+
+  <div className="product-image">
           <ProductGallery
             images={product.images}
             name={product.name}
@@ -120,9 +130,13 @@ export default function ProductDetails({ product }) {
             </button>
           </div>
 
-        </div>
 
-      </div>
-    </>
-  );
+            </div>   {/* product-details */}
+
+    </div>     {/* product-container */}
+
+  </div>       {/* product-page */}
+
+</>
+);
 }

@@ -1,11 +1,13 @@
 "use client";
-
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import { useState } from "react";
 import Navbar from "../../components/Navbar";
 import ProductCard from "../../components/ProductCard";
 import products from "../../data/products";
 
 export default function Shop() {
+  const router = useRouter();
 
   const [category, setCategory] = useState("All");
   const [search, setSearch] = useState("");
@@ -36,7 +38,12 @@ export default function Shop() {
       <Navbar />
 
       <main className="shop-page">
-
+        <button
+          className="back-btn"
+          onClick={() => router.back()}
+        >
+          ← Back
+        </button>
         <h1>Shop</h1>
 
         <div className="search-bar">
@@ -85,17 +92,26 @@ export default function Shop() {
 
         <div className="products">
 
-          {filteredProducts.map((product) => (
+          {filteredProducts.length > 0 ? (
 
-            <ProductCard
-              key={product.id}
-              id={product.id}
-              image={product.image}
-              name={product.name}
-              price={product.price}
-            />
+            filteredProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                image={product.image}
+                name={product.name}
+                price={product.price}
+              />
+            ))
 
-          ))}
+          ) : (
+
+            <div className="no-products">
+              <h2>😕 No Products Found</h2>
+              <p>Try searching with another keyword.</p>
+            </div>
+
+          )}
 
         </div>
 
