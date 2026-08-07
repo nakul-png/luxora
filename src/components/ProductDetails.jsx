@@ -3,15 +3,33 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "../context/CartContext";
+import { useWishlist } from "../context/WishlistContext";
 import ProductGallery from "./ProductGallery";
 
 export default function ProductDetails({ product }) {
 
   const router = useRouter();
   const { addToCart } = useCart();
+  const { wishlistItems, addToWishlist, removeFromWishlist } = useWishlist();
 
   const [selectedSize, setSelectedSize] = useState("M");
   const [quantity, setQuantity] = useState(1);
+  const isWishlisted = wishlistItems.some(
+    (item) => item.id === product.id
+  );
+
+  const handleWishlist = () => {
+    if (isWishlisted) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist({
+        id: product.id,
+        image: product.image,
+        name: product.name,
+        price: product.price,
+      });
+    }
+  };
 
   const increaseQuantity = () => {
     setQuantity((prev) => prev + 1);
@@ -23,120 +41,123 @@ export default function ProductDetails({ product }) {
     }
   };
 
- const handleAddToCart = () => {
-  addToCart({
-    id: product.id,
-    image: product.image,
-    name: product.name,
-    price: product.price,
-    quantity,
-    size: selectedSize,
-  });
+  const handleAddToCart = () => {
+    addToCart({
+      id: product.id,
+      image: product.image,
+      name: product.name,
+      price: product.price,
+      quantity,
+      size: selectedSize,
+    });
 
-  toast.success("Added to Cart!");
-};
+    toast.success("Added to Cart!");
+  };
 
   const handleBuyNow = () => {
-  addToCart({
-    id: product.id,
-    image: product.image,
-    name: product.name,
-    price: product.price,
-    quantity,
-    size: selectedSize,
-  });
-  toast.success("Proceeding to Checkout...");
+    addToCart({
+      id: product.id,
+      image: product.image,
+      name: product.name,
+      price: product.price,
+      quantity,
+      size: selectedSize,
+    });
+    toast.success("Proceeding to Checkout...");
 
-  router.push("/checkout");
-};
+    router.push("/checkout");
+  };
 
   return (
     <>
-  <div className="product-page">
+      <div className="product-page">
 
-    <button
-      className="back-btn"
-      onClick={() => router.back()}
-    >
-      ← Back
-    </button>
+        <button
+          className="back-btn"
+          onClick={() => router.back()}
+        >
+          ← Back
+        </button>
 
-    <div className="product-container">
+        <div className="product-container">
 
-  <div className="product-image">
-          <ProductGallery
-            images={product.images}
-            name={product.name}
-          />
-        </div>
-
-        <div className="product-details">
-
-          <div className="product-header">
-            <h1>{product.name}</h1>
-
-            <button className="wishlist-btn">
-              ❤️
-            </button>
+          <div className="product-image">
+            <ProductGallery
+              images={product.images}
+              name={product.name}
+            />
           </div>
 
-          <div className="product-rating">
-            ⭐⭐⭐⭐⭐ <span>(128 Reviews)</span>
-          </div>
+          <div className="product-details">
 
-          <h2 className="product-price">
-            ₹{product.price}
-          </h2>
+            <div className="product-header">
+              <h1>{product.name}</h1>
 
-          <h3>Select Size</h3>
-
-          <div className="sizes">
-            {["S","M","L","XL"].map((size) => (
               <button
-                key={size}
-                className={selectedSize === size ? "active-size" : ""}
-                onClick={() => setSelectedSize(size)}
+                className="wishlist-btn"
+                onClick={handleWishlist}
               >
-                {size}
+                {isWishlisted ? "❤️" : "🤍"}
               </button>
-            ))}
-          </div>
+            </div>
 
-          <h3>Quantity</h3>
+            <div className="product-rating">
+              ⭐⭐⭐⭐⭐ <span>(128 Reviews)</span>
+            </div>
 
-          <div className="quantity-controls">
-            <button onClick={decreaseQuantity}>-</button>
-            <span>{quantity}</span>
-            <button onClick={increaseQuantity}>+</button>
-          </div>
+            <h2 className="product-price">
+              ₹{product.price}
+            </h2>
 
-          <p className="product-description">
-            {product.description}
-          </p>
+            <h3>Select Size</h3>
 
-          <div className="product-buttons">
-            <button
-              className="buy-btn"
-              onClick={handleAddToCart}
-            >
-              Add to Cart
-            </button>
+            <div className="sizes">
+              {["S", "M", "L", "XL"].map((size) => (
+                <button
+                  key={size}
+                  className={selectedSize === size ? "active-size" : ""}
+                  onClick={() => setSelectedSize(size)}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
 
-            <button
-              className="checkout-btn"
-              onClick={handleBuyNow}
-            >
-              Buy Now
-            </button>
-          </div>
+            <h3>Quantity</h3>
+
+            <div className="quantity-controls">
+              <button onClick={decreaseQuantity}>-</button>
+              <span>{quantity}</span>
+              <button onClick={increaseQuantity}>+</button>
+            </div>
+
+            <p className="product-description">
+              {product.description}
+            </p>
+
+            <div className="product-buttons">
+              <button
+                className="buy-btn"
+                onClick={handleAddToCart}
+              >
+                Add to Cart
+              </button>
+
+              <button
+                className="checkout-btn"
+                onClick={handleBuyNow}
+              >
+                Buy Now
+              </button>
+            </div>
 
 
-            </div>   {/* product-details */}
+          </div>   {/* product-details */}
 
-    </div>     {/* product-container */}
+        </div>     {/* product-container */}
 
-  </div>       {/* product-page */}
+      </div>       {/* product-page */}
 
-</>
-);
+    </>
+  );
 }

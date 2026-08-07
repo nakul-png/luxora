@@ -10,6 +10,7 @@ import "../styles/testimonials.css";
 import "../styles/newsletter.css";
 import "../styles/product.css";
 import { CartProvider } from "../context/CartContext";
+import { WishlistProvider } from "../context/WishlistContext";
 import "../styles/collections.css";
 import "../styles/fashionVideo.css";
 import "../styles/lookbook.css";
@@ -18,6 +19,7 @@ import "../styles/checkout.css";
 import "../styles/orderSuccess.css";
 import "../styles/brandStory.css";
 import { Toaster } from "sonner";
+import "../styles/orderTracking.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -51,9 +53,11 @@ export default function RootLayout({ children }) {
             },
           }}
         />
-        <CartProvider>
-          {children}
-        </CartProvider>
+        <WishlistProvider>
+          <CartProvider>
+            {children}
+          </CartProvider>
+        </WishlistProvider>
 
       </body>
     </html>

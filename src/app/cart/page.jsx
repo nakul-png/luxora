@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useState } from "react";
 import Navbar from "../../components/Navbar";
 import Image from "next/image";
 import { useCart } from "../../context/CartContext";
@@ -13,6 +14,29 @@ export default function CartPage() {
     decreaseQuantity,
     removeFromCart,
   } = useCart();
+  const [coupon, setCoupon] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [couponMessage, setCouponMessage] = useState("");
+  const applyCoupon = () => {
+    const subtotal = cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+
+    if (coupon === "WELCOME10") {
+      setDiscount(subtotal * 0.1);
+      setCouponMessage("✅ WELCOME10 Applied");
+    } else if (coupon === "LUXORA20") {
+      setDiscount(subtotal * 0.2);
+      setCouponMessage("✅ LUXORA20 Applied");
+    } else if (coupon === "FIRST50") {
+      setDiscount(50);
+      setCouponMessage("✅ FIRST50 Applied");
+    } else {
+      setDiscount(0);
+      setCouponMessage("❌ Invalid Coupon");
+    }
+  };
 
   return (
     <>
@@ -71,6 +95,25 @@ export default function CartPage() {
             <div className="cart-summary">
 
               <h2>Order Summary</h2>
+              <div className="coupon-box">
+
+                <input
+                  type="text"
+                  placeholder="Enter Coupon Code"
+                  value={coupon}
+                  onChange={(e) => setCoupon(e.target.value)}
+                />
+
+                <button onClick={applyCoupon}>
+                  Apply
+                </button>
+
+              </div>
+
+              <p className="coupon-message">
+                {couponMessage}
+              </p>
+
 
               <div className="summary-row">
                 <span>Subtotal</span>
@@ -86,16 +129,22 @@ export default function CartPage() {
                 <span>Shipping</span>
                 <span>FREE</span>
               </div>
+              <div className="summary-row">
+                <span>Discount</span>
+                <span>-₹{discount}</span>
+              </div>
 
               <hr />
 
               <div className="summary-row total">
                 <span>Total</span>
                 <span>
-                  ₹{cartItems.reduce(
-                    (total, item) => total + item.price * item.quantity,
-                    0
-                  )}
+                  ₹{
+                    cartItems.reduce(
+                      (total, item) => total + item.price * item.quantity,
+                      0
+                    ) - discount
+                  }
                 </span>
               </div>
 

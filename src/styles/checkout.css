@@ -144,3 +144,44 @@ hr{
 .payment-option input{
     accent-color:#d4af37;
 }
+.coupon-box{
+    display:flex;
+    gap:10px;
+    margin:20px 0;
+}
+
+.coupon-box input{
+    flex:1;
+    padding:14px;
+    border:1px solid #333;
+    border-radius:10px;
+    background:#1a1a1a;
+    color:white;
+    font-size:16px;
+    outline:none;
+}
+
+.coupon-box input::placeholder{
+    color:#888;
+}
+
+.coupon-box button{
+    padding:14px 20px;
+    border:none;
+    border-radius:10px;
+    background:#d4af37;
+    color:#000;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.coupon-box button:hover{
+    transform:scale(1.03);
+}
+
+.coupon-message{
+    color:#d4af37;
+    margin-bottom:15px;
+    font-size:15px;
+}

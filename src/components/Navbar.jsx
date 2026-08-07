@@ -3,9 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "../context/CartContext";
+import { useWishlist } from "../context/WishlistContext";
 
 export default function Navbar() {
   const { cartItems } = useCart();
+  const { wishlistItems } = useWishlist();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -17,24 +19,29 @@ export default function Navbar() {
 
       <div className="mobile-icons">
 
-  <Link href="/cart" className="mobile-cart">
-    🛒
-    <span>{cartItems.length}</span>
-  </Link>
+        <Link href="/cart" className="mobile-cart">
+          🛒
+          <span>{cartItems.length}</span>
+        </Link>
 
-  <div
-    className="menu-btn"
-    onClick={() => setMenuOpen(true)}
-  >
-    ☰
-  </div>
+        <div
+          className="menu-btn"
+          onClick={() => setMenuOpen(true)}
+        >
+          ☰
+        </div>
 
-</div>
+      </div>
 
       <ul className="nav-links desktop-menu">
         <li><Link href="/">Home</Link></li>
         <li><Link href="/about">About</Link></li>
         <li><Link href="/contact">Contact</Link></li>
+        <li>
+          <Link href="/wishlist">
+            ❤️ Wishlist ({wishlistItems.length})
+          </Link>
+        </li>
         <li><Link href="/cart">🛒 Cart ({cartItems.length})</Link></li>
       </ul>
 
@@ -67,7 +74,15 @@ export default function Navbar() {
           Contact
         </Link>
 
-        
+        <Link href="/wishlist" onClick={() => setMenuOpen(false)}>
+          ❤️ Wishlist ({wishlistItems.length})
+        </Link>
+
+        <Link href="/cart" onClick={() => setMenuOpen(false)}>
+          🛒 Cart ({cartItems.length})
+        </Link>
+
+
 
       </div>
 

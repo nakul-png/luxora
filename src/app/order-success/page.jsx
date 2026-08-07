@@ -30,11 +30,21 @@ export default function OrderSuccess() {
 
           <div className="success-buttons">
 
-            <Link href="/shop">
-              <button className="continue-btn">
-                Continue Shopping
-              </button>
-            </Link>
+            <div className="success-buttons">
+
+              <Link href="/order-tracking">
+                <button className="checkout-btn">
+                  📦 Track Order
+                </button>
+              </Link>
+
+              <Link href="/shop">
+                <button className="continue-btn">
+                  Continue Shopping
+                </button>
+              </Link>
+
+            </div>
 
             <Link href="/">
               <button className="home-btn">
