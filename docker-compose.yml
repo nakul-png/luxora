@@ -1,0 +1,26 @@
+services:
+
+  frontend:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_PRODUCT_API: http://localhost:8000
+    container_name: luxora-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - product-service
+
+  product-service:
+    build:
+      context: ./product-service
+    container_name: luxora-product-service
+    ports:
+      - "8000:8000"
+
+  cart-service:
+    build:
+      context: ./cart-service
+    container_name: luxora-cart-service
+    ports:
+      - "5000:5000"

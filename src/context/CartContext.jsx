@@ -1,72 +1,122 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+
+import {
+  getCart,
+  addCartItem,
+  updateCartItem,
+  removeCartItem,
+  clearCartApi,
+} from "../services/cartService";
 
 const CartContext = createContext();
 
+const CART_ID = "luxora-demo-cart";
+
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  function addToCart(product) {
-    setCartItems((prev) => {
+  useEffect(() => {
+    async function loadCart() {
+      try {
+        const data = await getCart(CART_ID);
+        setCartItems(data);
+      } catch (error) {
+        console.error("Failed to load cart:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
 
-      const existing = prev.find(
-        (item) =>
-          item.id === product.id &&
-          item.size === product.size
+    loadCart();
+  }, []);
+
+  async function addToCart(product) {
+    try {
+      const updatedCart = await addCartItem(
+        CART_ID,
+        product
       );
 
-      if (existing) {
-        return prev.map((item) =>
-          item.id === product.id &&
-            item.size === product.size
-            ? {
-              ...item,
-              quantity: item.quantity + product.quantity,
-            }
-            : item
-        );
-      }
-
-      return [...prev, product];
-    });
+      setCartItems(updatedCart);
+    } catch (error) {
+      console.error("Failed to add item:", error);
+    }
   }
 
-  function increaseQuantity(id) {
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )
-    );
+  async function removeFromCart(id) {
+    try {
+      const updatedCart = await removeCartItem(
+        CART_ID,
+        id
+      );
+
+      setCartItems(updatedCart);
+    } catch (error) {
+      console.error("Failed to remove item:", error);
+    }
   }
 
-  function decreaseQuantity(id) {
-    setCartItems((prev) =>
-      prev
-        .map((item) =>
-          item.id === id
-            ? { ...item, quantity: item.quantity - 1 }
-            : item
-        )
-        .filter((item) => item.quantity > 0)
-    );
+  async function clearCart() {
+    try {
+      const updatedCart = await clearCartApi(
+        CART_ID
+      );
+
+      setCartItems(updatedCart);
+    } catch (error) {
+      console.error("Failed to clear cart:", error);
+    }
   }
 
-  function removeFromCart(id) {
-    setCartItems((prev) =>
-      prev.filter((item) => item.id !== id)
-    );
-  }
-  function clearCart() {
-    setCartItems([]);
+  async function increaseQuantity(id) {
+    try {
+      const item = cartItems.find(
+        (item) => item.id === id
+      );
+
+      if (!item) return;
+
+      const updatedCart = await updateCartItem(
+        CART_ID,
+        item.id,
+        item.quantity + 1,
+        item.size
+      );
+
+      setCartItems(updatedCart);
+    } catch (error) {
+      console.error("Failed to increase quantity:", error);
+    }
   }
 
+  async function decreaseQuantity(id) {
+    try {
+      const item = cartItems.find(
+        (item) => item.id === id
+      );
+
+      if (!item) return;
+
+      const updatedCart = await updateCartItem(
+        CART_ID,
+        item.id,
+        item.quantity - 1,
+        item.size
+      );
+
+      setCartItems(updatedCart);
+    } catch (error) {
+      console.error("Failed to decrease quantity:", error);
+    }
+  }
   return (
     <CartContext.Provider
       value={{
         cartItems,
+        loading,
         addToCart,
         increaseQuantity,
         decreaseQuantity,

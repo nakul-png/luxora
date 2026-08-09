@@ -10,3 +10,5 @@ six==1.17.0
 typing-inspection==0.4.2
 typing_extensions==4.16.0
 tzdata==2026.3
+fastapi
+uvicorn
