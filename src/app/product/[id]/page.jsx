@@ -1,12 +1,13 @@
 import ProductCard from "../../../components/ProductCard";
 import Navbar from "../../../components/Navbar";
-import products from "../../../data/products";
+import { getProducts, getProductById } from "@/services/productService";
 import ProductDetails from "../../../components/ProductDetails";
 
 export default async function ProductPage({ params }) {
   const { id } = await params;
 
-  const product = products.find((item) => item.id === id);
+  const product = await getProductById(id);
+const products = await getProducts();
 
   if (!product) {
     return (
