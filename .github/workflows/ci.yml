@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - devops-capstone
+
   pull_request:
     branches:
       - main
@@ -13,40 +14,60 @@ permissions:
   contents: read
   packages: write
 
+
+# ============================================================
+# FRONTEND
+# ============================================================
+
 jobs:
+
   frontend:
-    name: Frontend Docker Build & Push
+    name: Frontend Docker Build + Trivy Scan + Push
     runs-on: ubuntu-latest
 
     steps:
+
+      # ----------------------------------------
+      # 1. Checkout
+      # ----------------------------------------
+
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Login to GHCR
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push frontend
+      # ----------------------------------------
+      # 2. Build Docker Image
+      # ----------------------------------------
+
+      - name: Build frontend image
         uses: docker/build-push-action@v6
         with:
           context: .
-          push: true
+          load: true
+          tags: |
+            luxora-frontend:${{ github.sha }}
+            luxora-frontend:latest
           build-args: |
             NEXT_PUBLIC_PRODUCT_API=http://localhost:8000
-          tags: |
-            ghcr.io/${{ github.repository }}/frontend:latest
-            ghcr.io/${{ github.repository }}/frontend:${{ github.sha }}
 
-  cart-service:
-    name: Cart Service Docker Build & Push
-    runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      # ----------------------------------------
+      # 3. Trivy Security Scan
+      # ----------------------------------------
+
+      - name: Scan frontend image with Trivy
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: luxora-frontend:${{ github.sha }}
+          format: table
+          exit-code: '1'
+          ignore-unfixed: true
+          severity: CRITICAL,HIGH
+
+
+      # ----------------------------------------
+      # 4. Login to GHCR
+      # ----------------------------------------
 
       - name: Login to GHCR
         uses: docker/login-action@v3
@@ -55,22 +76,81 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push cart service
+
+      # ----------------------------------------
+      # 5. Tag Image
+      # ----------------------------------------
+
+      - name: Tag frontend image
+        run: |
+          docker tag \
+            luxora-frontend:${{ github.sha }} \
+            ghcr.io/${{ github.repository }}/frontend:${{ github.sha }}
+
+          docker tag \
+            luxora-frontend:${{ github.sha }} \
+            ghcr.io/${{ github.repository }}/frontend:latest
+
+
+      # ----------------------------------------
+      # 6. Push to GHCR
+      # ----------------------------------------
+
+      - name: Push frontend image
+        run: |
+          docker push ghcr.io/${{ github.repository }}/frontend:${{ github.sha }}
+          docker push ghcr.io/${{ github.repository }}/frontend:latest
+
+
+  # ============================================================
+  # CART SERVICE
+  # ============================================================
+
+  cart-service:
+    name: Cart Service Docker Build + Trivy Scan + Push
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # ----------------------------------------
+      # 1. Checkout
+      # ----------------------------------------
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+
+      # ----------------------------------------
+      # 2. Build Docker Image
+      # ----------------------------------------
+
+      - name: Build cart service image
         uses: docker/build-push-action@v6
         with:
           context: ./cart-service
-          push: true
+          load: true
           tags: |
-            ghcr.io/${{ github.repository }}/cart-service:latest
-            ghcr.io/${{ github.repository }}/cart-service:${{ github.sha }}
+            luxora-cart-service:${{ github.sha }}
+            luxora-cart-service:latest
 
-  product-service:
-    name: Product Service Docker Build & Push
-    runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      # ----------------------------------------
+      # 3. Trivy Security Scan
+      # ----------------------------------------
+
+      - name: Scan cart service image with Trivy
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: luxora-cart-service:${{ github.sha }}
+          format: table
+          exit-code: '1'
+          ignore-unfixed: true
+          severity: CRITICAL,HIGH
+
+
+      # ----------------------------------------
+      # 4. Login to GHCR
+      # ----------------------------------------
 
       - name: Login to GHCR
         uses: docker/login-action@v3
@@ -79,11 +159,110 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push product service
+
+      # ----------------------------------------
+      # 5. Tag Image
+      # ----------------------------------------
+
+      - name: Tag cart service image
+        run: |
+          docker tag \
+            luxora-cart-service:${{ github.sha }} \
+            ghcr.io/${{ github.repository }}/cart-service:${{ github.sha }}
+
+          docker tag \
+            luxora-cart-service:${{ github.sha }} \
+            ghcr.io/${{ github.repository }}/cart-service:latest
+
+
+      # ----------------------------------------
+      # 6. Push to GHCR
+      # ----------------------------------------
+
+      - name: Push cart service image
+        run: |
+          docker push ghcr.io/${{ github.repository }}/cart-service:${{ github.sha }}
+          docker push ghcr.io/${{ github.repository }}/cart-service:latest
+
+
+  # ============================================================
+  # PRODUCT SERVICE
+  # ============================================================
+
+  product-service:
+    name: Product Service Docker Build + Trivy Scan + Push
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # ----------------------------------------
+      # 1. Checkout
+      # ----------------------------------------
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+
+      # ----------------------------------------
+      # 2. Build Docker Image
+      # ----------------------------------------
+
+      - name: Build product service image
         uses: docker/build-push-action@v6
         with:
           context: ./product-service
-          push: true
+          load: true
           tags: |
-            ghcr.io/${{ github.repository }}/product-service:latest
+            luxora-product-service:${{ github.sha }}
+            luxora-product-service:latest
+
+
+      # ----------------------------------------
+      # 3. Trivy Security Scan
+      # ----------------------------------------
+
+      - name: Scan product service image with Trivy
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: luxora-product-service:${{ github.sha }}
+          format: table
+          exit-code: '1'
+          ignore-unfixed: true
+          severity: CRITICAL,HIGH
+
+
+      # ----------------------------------------
+      # 4. Login to GHCR
+      # ----------------------------------------
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+
+      # ----------------------------------------
+      # 5. Tag Image
+      # ----------------------------------------
+
+      - name: Tag product service image
+        run: |
+          docker tag \
+            luxora-product-service:${{ github.sha }} \
             ghcr.io/${{ github.repository }}/product-service:${{ github.sha }}
+
+          docker tag \
+            luxora-product-service:${{ github.sha }} \
+            ghcr.io/${{ github.repository }}/product-service:latest
+
+
+      # ----------------------------------------
+      # 6. Push to GHCR
+      # ----------------------------------------
+
+      - name: Push product service image
+        run: |
+          docker push ghcr.io/${{ github.repository }}/product-service:${{ github.sha }}
+          docker push ghcr.io/${{ github.repository }}/product-service:latest
