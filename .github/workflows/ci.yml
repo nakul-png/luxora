@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - devops-capstone
 
   pull_request:
     branches:
@@ -67,9 +66,11 @@ jobs:
 
       # ----------------------------------------
       # 4. Login to GHCR
+      # Only on push to main
       # ----------------------------------------
 
       - name: Login to GHCR
+        if: github.event_name == 'push'
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -82,6 +83,7 @@ jobs:
       # ----------------------------------------
 
       - name: Tag frontend image
+        if: github.event_name == 'push'
         run: |
           docker tag \
             luxora-frontend:${{ github.sha }} \
@@ -97,6 +99,7 @@ jobs:
       # ----------------------------------------
 
       - name: Push frontend image
+        if: github.event_name == 'push'
         run: |
           docker push ghcr.io/${{ github.repository }}/frontend:${{ github.sha }}
           docker push ghcr.io/${{ github.repository }}/frontend:latest
@@ -153,6 +156,7 @@ jobs:
       # ----------------------------------------
 
       - name: Login to GHCR
+        if: github.event_name == 'push'
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -165,6 +169,7 @@ jobs:
       # ----------------------------------------
 
       - name: Tag cart service image
+        if: github.event_name == 'push'
         run: |
           docker tag \
             luxora-cart-service:${{ github.sha }} \
@@ -180,6 +185,7 @@ jobs:
       # ----------------------------------------
 
       - name: Push cart service image
+        if: github.event_name == 'push'
         run: |
           docker push ghcr.io/${{ github.repository }}/cart-service:${{ github.sha }}
           docker push ghcr.io/${{ github.repository }}/cart-service:latest
@@ -236,6 +242,7 @@ jobs:
       # ----------------------------------------
 
       - name: Login to GHCR
+        if: github.event_name == 'push'
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -248,6 +255,7 @@ jobs:
       # ----------------------------------------
 
       - name: Tag product service image
+        if: github.event_name == 'push'
         run: |
           docker tag \
             luxora-product-service:${{ github.sha }} \
@@ -263,6 +271,7 @@ jobs:
       # ----------------------------------------
 
       - name: Push product service image
+        if: github.event_name == 'push'
         run: |
           docker push ghcr.io/${{ github.repository }}/product-service:${{ github.sha }}
           docker push ghcr.io/${{ github.repository }}/product-service:latest
