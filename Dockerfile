@@ -1,8 +1,7 @@
 FROM node:24-alpine AS base
 
 # Update npm to a version with fixed bundled dependencies
-RUN npm install -g npm@12.0.2
-
+RUN npm install -g npm@latest
 
 FROM base AS deps
 
@@ -31,7 +30,7 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
-
+RUN npm uninstall -g npm
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
