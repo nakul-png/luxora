@@ -1,4 +1,10 @@
-FROM node:20-alpine AS deps
+FROM node:24-alpine AS base
+
+# Update npm to a version with fixed bundled dependencies
+RUN npm install -g npm@12.0.2
+
+
+FROM base AS deps
 
 WORKDIR /app
 
@@ -7,7 +13,7 @@ COPY package*.json ./
 RUN npm ci
 
 
-FROM node:20-alpine AS builder
+FROM base AS builder
 
 WORKDIR /app
 
@@ -20,7 +26,7 @@ COPY . .
 RUN npm run build
 
 
-FROM node:20-alpine AS runner
+FROM base AS runner
 
 WORKDIR /app
 
