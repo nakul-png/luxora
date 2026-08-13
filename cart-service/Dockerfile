@@ -13,6 +13,8 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
+RUN apk upgrade --no-cache
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
