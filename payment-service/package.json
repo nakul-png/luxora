@@ -1,0 +1,14 @@
+{
+  "name": "luxora-payment-service",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "express": "^4.21.2",
+    "razorpay": "^2.9.8"
+  }
+}

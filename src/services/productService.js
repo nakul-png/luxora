@@ -1,9 +1,7 @@
 import axios from "axios";
 
-const API = process.env.NEXT_PUBLIC_PRODUCT_API;
-console.log("API =", API);
 export const getProducts = async () => {
-  const response = await axios.get(`${API}/products`);
+  const response = await axios.get("/products/");
   return response.data;
 };
 
